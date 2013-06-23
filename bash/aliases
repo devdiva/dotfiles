@@ -4,7 +4,7 @@
 function dev  { cd ~/workspace/$1; }
 
 # fn to cd to tramps (where i keep my vagrant instances)
-function bxs { cd ~/tramps/$1;  }
+function vbx { cd ~/vboxes/$1;  }
 
 # fn to cd to scratch (where i keep my non-project code)
 function scratch { cd ~/workspace/scratch/$1; }
