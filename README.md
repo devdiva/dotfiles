@@ -15,7 +15,10 @@ bashrc - sources the scripts in bash folder
   bash/paths
   bash/config
 
-i like how the bash config is separated out into logical groups, it simplifies reading and understanding.  not to mention you could use it to cherrypick features, especially useful in heterogenous environments.
+i like how the bash config is separated out into logical groups, it simplifies 
+reading and understanding.  not to mention you could use it to cherrypick features, 
+especially useful in heterogenous environments.  that said, there could be issues if 
+ruby/rake not already present on the system.
 
 
 
