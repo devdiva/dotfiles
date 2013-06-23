@@ -1,0 +1,16 @@
+# add aliases
+
+# fn to cd to workspace (where i keep my projects)
+function dev  { cd ~/workspace/$1; }
+
+# fn to cd to tramps (where i keep my vagrant instances)
+function bxs { cd ~/tramps/$1;  }
+
+# fn to cd to scratch (where i keep my non-project code)
+function scratch { cd ~/workspace/scratch/$1; }
+
+# fn to cd to devdiva projects
+function devi { cd ~/workspace/devdiva/$1; }
+
+# misc
+alias reload='. ~/.bash_profile'
