@@ -13,6 +13,10 @@ function dev {
   then
     printf "%b" "Changing to devdiva workspace:  $1 $2 \n\n"
     cd ~/workspace/devdiva/$2
+  elif [ $1 == 'l' ]
+  then
+    printf "%b" "Changing to devdiva-labs workspace:  $1 $2 \n\n"
+    cd ~/workspace/devdiva-labs/$2
   elif [ $1 == 'p' ]
   then
     printf "%b" "Changing to project workspace:  $1 $2 \n\n"
