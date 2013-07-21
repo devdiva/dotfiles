@@ -3,7 +3,8 @@
 # add aliases
 
 # todo make base paths export/env arguments
-
+# todo can we add path autocomplete,
+# more natural cd behavior?
 function dev {
   if [ $# -eq 0 ]
   then
