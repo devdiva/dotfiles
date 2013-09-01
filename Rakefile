@@ -29,7 +29,11 @@ task :install do
         end
       end
     else
-      link_file(file)
+      if file.eql?("motd")
+        motd_link_file(file)
+      else
+        link_file(file)
+      end
     end
   end
 end
@@ -49,4 +53,9 @@ def link_file(file)
     puts "linking ~/.#{file}"
     system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
   end
+end
+
+def motd_link_file(file)
+  puts "linking motd file"
+  system %Q{sudo ln -s "$PWD/#{file}/hello_devdiva" "/etc/#{file}"}
 end
