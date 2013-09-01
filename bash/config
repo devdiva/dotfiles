@@ -1,0 +1,4 @@
+
+# Set PS1 prompt to "working_directory username$ " or "~ hd$ "
+
+export PS1="\W \u$ "

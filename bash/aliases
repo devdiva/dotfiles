@@ -1,0 +1,45 @@
+#!bin/bash
+
+# add aliases
+
+# todo make base paths export/env arguments
+# todo can we add path autocomplete,
+# more natural cd behavior?
+function dev {
+  if [ $# -eq 0 ]
+  then
+    cd ~/workspace
+  elif [ $1 == 'd' ]
+  then
+    printf "%b" "Changing to devdiva workspace:  $1 $2 \n\n"
+    cd ~/workspace/devdiva/$2
+  elif [ $1 == 'l' ]
+  then
+    printf "%b" "Changing to devdiva-labs workspace:  $1 $2 \n\n"
+    cd ~/workspace/devdiva-labs/$2
+  elif [ $1 == 'p' ]
+  then
+    printf "%b" "Changing to project workspace:  $1 $2 \n\n"
+    cd ~/workspace/projects/$2
+  elif [ $1 == 's' ]
+  then
+    printf "%b" "Changing to scratch workspace:  $1 $2 \n\n"
+    cd ~/workspace/scratch/$2
+  else
+    printf "%b" "Changing to dev workspace:  $1 $2 \n\n"
+    cd ~/workspace/$1/$2
+  fi
+}
+
+# fn to cd to tramps (where i keep my vagrant instances)
+# todo - make the vboxes path be a global/export variable
+function vbx { cd ~/vboxes/$1;  }
+
+# fn to cd to scratch (where i keep my non-project code)
+#function scratch { cd ~/workspace/scratch/$1; }
+
+# fn to cd to devdiva projects
+#function devi { cd ~/workspace/devdiva/$1; }
+
+# misc
+alias reload='. ~/.bash_profile'
