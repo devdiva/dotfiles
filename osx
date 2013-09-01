@@ -82,6 +82,8 @@ defaults write com.apple.helpviewer DevMode -bool true
 # in the login window
 # sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
+defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "devdiva ? authorized : take_a_hike "
+
 # Restart automatically if the computer freezes
 systemsetup -setrestartfreeze on
 
@@ -309,7 +311,6 @@ defaults write com.apple.dock show-process-indicators -bool true
 # This is only really useful when setting up a new Mac, or if you don’t use
 # the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array
-# TODO add in my list of apps for the dock (or do this via boxen)
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
@@ -333,10 +334,11 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 # Remove the auto-hiding Dock delay
 defaults write com.apple.dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock
-defaults write com.apple.dock autohide-time-modifier -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.1
 
-# Enable the 2D Dock
-defaults write com.apple.dock no-glass -bool true
+# (Dis)(E)nable the 2D Dock
+defaults write com.apple.dock no-glass -bool NO
+
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
@@ -351,9 +353,9 @@ defaults write com.apple.dock showhidden -bool true
 # ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Applications/iOS\ Simulator.app
 
 # Add a spacer to the left side of the Dock (where the applications are)
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+#defaults write com.apple.dock persistent-apps -array-remove '{tile-data={}; tile-type="spacer-tile";}'
 # Add a spacer to the right side of the Dock (where the Trash is)
-defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
+#defaults write com.apple.dock persistent-others -array-remove '{tile-data={}; tile-type="spacer-tile";}'
 
 # Hot corners
 # Possible values:

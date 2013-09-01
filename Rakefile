@@ -40,7 +40,7 @@ end
 
 desc "set osx defaults"
 task :set_osx_defaults do
-  system %Q{$HOME/./.osx}
+  system %Q{. $HOME/.osx}
 end
 
 # methods
