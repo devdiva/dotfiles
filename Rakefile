@@ -38,6 +38,13 @@ task :install do
   end
 end
 
+desc "set osx defaults"
+task :set_osx_defaults do
+  system %Q{$HOME/./.osx}
+end
+
+# methods
+
 def replace_file(file)
   system %Q{rm -rf "$HOME/.#{file.sub('.erb', '')}"}
   link_file(file)
@@ -59,3 +66,5 @@ def motd_link_file(file)
   puts "linking motd file"
   system %Q{sudo ln -s "$PWD/#{file}/hello_devdiva" "/etc/#{file}"}
 end
+
+
