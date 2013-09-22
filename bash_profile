@@ -6,4 +6,8 @@ fi
 #        . $(brew --prefix)/etc/bash_completion
 # fi
 
+alias ctags-bbedit='/opt/boxen/homebrew/bin/ctags --excmd=number --tag-relative=no --fields=+a+m+n+S -R `pwd`'
+
+
+
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh

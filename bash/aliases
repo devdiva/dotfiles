@@ -31,15 +31,26 @@ function dev {
   fi
 }
 
+# fn to change to my devblog or create a new blog entry 
+# todo would like it to create the blog entry and then open in vi for editing
+function devblog {
+  if [ $# -eq 0 ]
+  then
+    # todo make this start the localhost, then change to that dir
+    cd ~/workspace/devdiva/devdiva.github.io/source/blog
+  elif [ $1 == 's'  ]
+  then
+    cd ~/workspace/devdiva/devdiva.github.io &&  bundle exec middleman >&/dev/null &
+    cd ~/workspace/devdiva/devdiva.github.io/source/blog
+  else
+    # todo add in other handlers
+    echo "other handlers pending"
+  fi
+}
+
 # fn to cd to tramps (where i keep my vagrant instances)
 # todo - make the vboxes path be a global/export variable
 function vbx { cd ~/vboxes/$1;  }
-
-# fn to cd to scratch (where i keep my non-project code)
-#function scratch { cd ~/workspace/scratch/$1; }
-
-# fn to cd to devdiva projects
-#function devi { cd ~/workspace/devdiva/$1; }
 
 # misc
 alias reload='. ~/.bash_profile'
