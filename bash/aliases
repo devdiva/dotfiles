@@ -54,3 +54,4 @@ function vbx { cd ~/vboxes/$1;  }
 
 # misc
 alias reload='. ~/.bash_profile'
+alias be="bundle exec "
