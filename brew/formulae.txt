@@ -1,1 +1,5 @@
 tree
+neovim
+graphviz
+nvm
+ffmpeg
