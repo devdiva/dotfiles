@@ -1,0 +1,6 @@
+~/workspace
+~/workspace/devdiva
+~/workspace/projects
+~/workspace/oss
+~/workspace/scratch
+~/workspace/writing
