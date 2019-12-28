@@ -1,3 +1,5 @@
+**_DRAFT_**
+
 dotfiles
 ========
 
@@ -27,19 +29,21 @@ Evolutionary changes include:
 * Updated aliases and shortcuts
 * Alignment to my latest (and greatest!) tools
 
-Contents
+contents
 --------
 
-* bash - dotfiles for bash shell
-* brew - manifests for provisioning Homebrew
+* _bash - dotfiles for bash shell_
+* _brew - manifests for provisioning Homebrew_
+  - formula
+  - _casks_
 * dirs - manifests for provisioning directories
-* mdown
-* motd
-* node 
+* _mdown_
+* _motd_
+* _node_ 
 * rust - manifests for provisioning Rust
-* tmux
-* vim - dotfiles for neovim/vim
-* zsh - dotfiles for zsh shell
+* _tmux_
+* _vim - dotfiles for neovim/vim_
+* _zsh - dotfiles for zsh shell_
 
 
 
