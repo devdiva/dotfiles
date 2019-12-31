@@ -1,8 +1,0 @@
-tree
-neovim
-tmux
-graphviz
-nvm
-ffmpeg
-wget
-aspell

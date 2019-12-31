@@ -1,4 +1,4 @@
-#bbedit
+?bbedit
 #adobe-creative-cloud
 #adobe-creative-cloud-cleaner-tool
 #blender
@@ -12,10 +12,10 @@
 #dotnet-sdk
 #dropbox
 #firebaseadmin
-#firefox
-#google-chrome
+?firefox
+?google-chrome
 #godot
-#imageoptim
+?imageoptim
 #intellij-idea
 #intellij-idea-ce
 #koa11y
@@ -32,7 +32,7 @@
 #pd-extended
 #physicseditor
 #texturepacker
-postman
+?postman
 #r
 #robofont
 #rstudio
