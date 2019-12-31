@@ -1,0 +1,5 @@
+*.swp
+
+# ignore generated files
+my_bashrc
+my_zshrc
