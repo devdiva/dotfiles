@@ -80,7 +80,7 @@ thanks
 ------
 
 I had many years of use of dotfiles inspired by Ryan Bate.  I could have kept rolling with them just fine, but
-the temptation to adopt a whole bunch of other (cool) rake/brew dotfile tools felt a bit to alluring.  So, I
+the temptation to adopt a whole bunch of other (cool) rake/brew dotfile tools felt a bit too alluring.  So, I
 opted to reduce the number of dependencies and roll my own.
 
 This latest set is influenced by Zach Holman's dotfiles and indirectly by quite a few more.   

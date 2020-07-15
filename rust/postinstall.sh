@@ -4,7 +4,7 @@
 #
 # This runs postinstall stuff for the rust toolchain
 
-rustup
+rustup -V
 if [[ $? != 0 ]] ; then
   echo "rustup not found. check install, then re-run rust/postinstall.sh"
 else

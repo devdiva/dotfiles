@@ -13,12 +13,12 @@ dotfiles_dir=~$HOME/.my/dotfiles
 
 context_dir=$(pwd -P)
 
-if [[ $context_dir == $dotfiles_dir ]] ; then
-  echo "In the expected location"
-else
-  echo "Keep it tidy please. Execute from $dotfiles_dir"
-  exit
-fi
+#if [[ $context_dir == $dotfiles_dir ]] ; then
+#  echo "In the expected location"
+#else
+#  echo "Keep it tidy please. Execute from $dotfiles_dir"
+#  exit
+#fi
 
 # -- Helper Methods
 print_help()
@@ -57,7 +57,8 @@ brew_install()
                case $answer in
                  [yY]* )
                    echo "should insta $clean_token"
-                   #brew $command_cask install $clean_token
+                   # this is failing silently
+		   brew $command_cask install --appdir="~/Applications" $clean_token
                    break ;; 
                  [nN]* )
                    break ;;
@@ -119,18 +120,18 @@ bootstrap()
 generate_shell_startup()
 {
   echo "generate " $1
-  my_file=./my_$1
+  my_file=$HOME/.my/$1
   echo $my_file
   touch $my_file
   echo '# generated file, do not edit\n' >  $my_file
   case $1 in
     [bash]*)
-      find ./**/*.bash -type f -iname "path*" -or -iname "completion*"  | while read apath ; do
+      find ./**/*.bash -type f -iname "path*" -or -iname "completion*" -or -iname "alias*"  | while read apath ; do
         cat $apath >> $my_file
       done
       ;;
     [zsh]*)
-      find ./**/*.zsh -type f -iname "path*" -or -iname "completion*" | while read apath ; do
+      find ./**/*.zsh -type f -iname "path*" -or -iname "completion*" -or -iname "alias*" | while read apath ; do
         cat $apath >> $my_file
       done
       ;;
@@ -148,7 +149,7 @@ bootstrap_shell_startup()
   generate_shell_startup $1
 
   my_file=./my_$1
-  my_dotfile=$HOME/.my/dotfiles/my_$1
+  my_dotfile=$HOME/.my/$1
   home_file=$HOME/.$1
 
   if [ ! -f $home_file ] ; then
@@ -161,8 +162,9 @@ bootstrap_shell_startup()
   else
     echo "\nsource $my_dotfile" >> $home_file
   fi
-  
+   
 } 
+
 
 # -- OS / system prefs
 
@@ -179,3 +181,4 @@ bootstrap postinstall
 
 bootstrap_shell_startup bashrc
 bootstrap_shell_startup zshrc
+

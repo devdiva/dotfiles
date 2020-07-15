@@ -4,7 +4,7 @@
 #
 # This installs the rust toolchain
 
-rustc --version 
+rustup -V 
 if [[ $? != 0 ]] ; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   
@@ -13,5 +13,5 @@ if [[ $? != 0 ]] ; then
 
 else
   echo "Rust already installed."
-  rustup update
+#  rustup update
 fi

@@ -9,4 +9,4 @@
 mkdir ~/.nvm
 
 # TODO -- add in a system node version
-#(cd ~/.nvm && nvm install node)
+(cd ~/.nvm && source $(brew --prefix nvm)/nvm.sh && nvm install node && nvm use node)
