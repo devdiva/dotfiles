@@ -37,12 +37,13 @@ brew_install()
    else
      command_cask=""
    fi 
-   #echo "command_cask is $command_cask"
+   echo "command_cask is $command_cask"
    while read -r -u 3 token; do
      if [[ ! -z "$token" ]] ; then
        case $token in
          [#]* )
-           break ;;
+	   echo "skip $token"
+           continue ;;
          [?]* )
            clean_token="${token//\?}"
            echo "clean token $clean_token"
@@ -58,8 +59,12 @@ brew_install()
                  [yY]* )
                    echo "should insta $clean_token"
                    # this is failing silently
-		   brew $command_cask install --appdir="~/Applications" $clean_token
-                   break ;; 
+		   if [ -z $command_cask ]; then
+		     brew install $clean_token
+		   else
+		     brew cask install --appdir="~/Applications" $clean_token
+		   fi
+                   break ;;
                  [nN]* )
                    break ;;
                  * )
@@ -109,7 +114,7 @@ bootstrap_brew()
 
 bootstrap()
 {
-  echo "boostrap" $1
+  echo "bootstrap" $1
   script_name="$1.sh"
   find ./**/* -name $script_name | while read installer ; do
     sh -c "${installer}"
@@ -181,4 +186,5 @@ bootstrap postinstall
 
 bootstrap_shell_startup bashrc
 bootstrap_shell_startup zshrc
+
 
