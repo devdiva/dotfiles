@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Homebrew
+#
+# This installs the homebrew package manager
+
+which -s brew
+if [[ $? != 0 ]] ; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" ; brew analytics off
+
+  #/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" ; brew analytics off
+  # ruby deprecated
+  #ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi

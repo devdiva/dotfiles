@@ -7,9 +7,12 @@ echo "Installing your apps and dotfiles"
 # -- Constants
 script_dir="$(dirname "$0")"
 
+# TODO is this needed?
 dotfiles_dir=~$HOME/.my/dotfiles
 
 # -- Context Sanity Check
+
+# TODO is this needed?
 
 context_dir=$(pwd -P)
 
@@ -26,6 +29,7 @@ print_help()
   echo "Usage: install.sh"
 }
 
+# -- OS package manager
 brew_install()
 {
   if [[ $1 == 0 ]] ; then
@@ -34,20 +38,22 @@ brew_install()
    echo $1
    if [[ $1 =~ \.cask$  ]] ; then
      command_cask="cask"
+     arg_cask="--cask"
    else
      command_cask=""
+     arg_cask=""
    fi 
    echo "command_cask is $command_cask"
    while read -r -u 3 token; do
      if [[ ! -z "$token" ]] ; then
        case $token in
          [#]* )
-	   echo "skip $token"
+	   #echo "skip $token"
            continue ;;
          [?]* )
            clean_token="${token//\?}"
            echo "clean token $clean_token"
-           brew $command_cask ls --versions $clean_token > /dev/null
+           brew ls $arg_cask  --versions $clean_token > /dev/null
            if [[ $? == 0 ]] ; then
              echo " $clean_token already installed"	   
            else
@@ -62,7 +68,7 @@ brew_install()
 		   if [ -z $command_cask ]; then
 		     brew install $clean_token
 		   else
-		     brew cask install --appdir="~/Applications" $clean_token
+		     brew install $arg_cask --appdir="~/Applications" $clean_token
 		   fi
                    break ;;
                  [nN]* )
@@ -75,11 +81,11 @@ brew_install()
            fi
            ;;
          *)
-           brew $command_cask ls --versions $token > /dev/null
+           brew ls $arg_cask --versions $token > /dev/null
            if [[ $? == 0 ]] ; then
              echo "$token already installed"	   
            else
-             brew $command_cask install $token
+             brew install $token
            fi
            ;;
        esac
@@ -95,17 +101,52 @@ bootstrap_brew()
     if [[ -e "$script_dir/brew" ]] ; then
       case $1 in
         install) 
-          source "$script_dir/brew/install.brew"
-          brew_install "$script_dir/brew/install.formula"
-          brew_install "$script_dir/brew/install.cask"
+          # echo "should install"
+          source "$script_dir/brew/install.sh"
+          brew_install "$script_dir/brew/install.formula.txt"
+          brew_install "$script_dir/brew/install.cask.txt"
           ;;
         postinstall)
-          echo "should postinstall"
-          brew_install "$script_dir/brew/postinstall.formula"
-          brew_install "$script_dir/brew/postinstall.cask"
+          # echo "should postinstall"
+          brew_install "$script_dir/brew/postinstall.formula.txt"
+          brew_install "$script_dir/brew/postinstall.cask.txt"
           ;;
         *)
           echo "No argument supplied for bootsrapping brew"
+          ;;
+      esac
+    fi
+  fi
+}
+
+bootstrap_workspace()
+{
+  echo "bootstrap workspace"
+
+  # make workspace directory
+  workspace_dir="$HOME/workspace"
+  mkdir -p "$workspace_dir"
+
+  # make workspace subdirectories
+  while read -r dir; do
+    mkdir -p "$workspace_dir/$dir"
+  done <"$script_dir/workspace/dirs.txt"
+}
+
+bootstrap_os()
+{
+  if [[ $OSTYPE == "darwin"* ]] ; then 
+    echo "Bootstrap system for OS X ($1)"
+    if [[ -e "$script_dir/darwin" ]]; then
+      case $1 in
+        install)
+          source "$script_dir/darwin/install.sh"
+          ;;
+        postinstall)
+          echo "should postinstall - noop"
+          ;;
+        *)
+          echo "No argument supplied for bootstrapping os"
           ;;
       esac
     fi
@@ -117,6 +158,7 @@ bootstrap()
   echo "bootstrap" $1
   script_name="$1.sh"
   find ./**/* -name $script_name | while read installer ; do
+    # TODO check if we have things that run twice.
     sh -c "${installer}"
   done
 }
@@ -172,6 +214,12 @@ bootstrap_shell_startup()
 
 
 # -- OS / system prefs
+bootstrap_os install
+
+# -- OS / workspace
+bootstrap_workspace
+
+# TODO bootstrap git,ssh configs
 
 # -- INSTALL
 

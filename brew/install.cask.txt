@@ -1,2 +1,2 @@
-kaleidoscope
+?kaleidoscope
 ?visual-studio-code
